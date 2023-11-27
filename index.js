@@ -78,3 +78,17 @@ app.get('/books/:id', (req, res) => {
     res.render('book', { book });
   });
 });
+
+
+app.get('/books/edit/:id', (req, res) => {
+  const id = req.params.id
+  const sql = 'SELECT * FROM books WHERE id = ' + id;
+  conn.query(sql, function(err, data) {
+    if (err) {
+      console.log(err);
+    }
+    const book = data[0];
+    console.log(book);
+    res.render('editbook', { book });
+  });
+});
